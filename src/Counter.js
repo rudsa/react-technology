@@ -13,14 +13,15 @@ class Counter extends Component {
         <h2>fixedNumber : {fixedNumber}</h2>
         <button
           onClick={() => {
-            this.setState((preveState, props) => {
-              return {
-                number: preveState.number + 1,
-              };
-            });
-            this.setState((preveState) => ({
-              number: preveState.number + 1,
-            }));
+            this.setState(
+              {
+                number: number + 1,
+              },
+              () => {
+                console.log("Call Set State");
+                console.log(this.state);
+              }
+            );
           }}
         >
           +1
