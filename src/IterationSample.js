@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
 
 const IterationSample = () => {
   const [names, setNames] = useState([
@@ -13,13 +13,15 @@ const IterationSample = () => {
   const onChange = (e) => setInputText(e.target.value);
 
   const onClick = () => {
-    const nextNames = names.concat({
-      id: nextId,
-      text: inputText,
-    });
-    setNextId(nextId + 1);
-    setNames(nextNames);
-    setInputText("");
+    if (inputText) {
+      const nextNames = names.concat({
+        id: nextId,
+        text: inputText,
+      });
+      setNextId(nextId + 1);
+      setNames(nextNames);
+      setInputText("");
+    }
   };
 
   const onRemove = (id) => {
@@ -34,11 +36,11 @@ const IterationSample = () => {
   ));
 
   return (
-    <fragment>
+    <>
       <input value={inputText} onChange={onChange} />
       <button onClick={onClick}>Add Name</button>
       <ul>{nameList}</ul>
-    </fragment>
+    </>
   );
 };
 
